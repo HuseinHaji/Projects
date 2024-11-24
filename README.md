@@ -1,5 +1,3 @@
-Creating a general README for your **Projects** repository is a great idea. A well-written README serves as the face of your repository and provides clarity for viewers. Here's a structure you can follow for your **Projects** repository:
-
 ---
 
 # Projects Repository

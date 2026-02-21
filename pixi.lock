@@ -5,8 +5,6 @@ environments:
     - url: https://conda.anaconda.org/conda-forge/
     indexes:
     - https://pypi.org/simple
-    options:
-      pypi-prerelease-mode: if-necessary-or-explicit
     packages:
       linux-64:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2
@@ -1013,8 +1011,6 @@ environments:
     - url: https://conda.anaconda.org/conda-forge/
     indexes:
     - https://pypi.org/simple
-    options:
-      pypi-prerelease-mode: if-necessary-or-explicit
     packages:
       linux-64:
       - conda: https://conda.anaconda.org/conda-forge/linux-64/_libgcc_mutex-0.1-conda_forge.tar.bz2
@@ -9007,6 +9003,12 @@ packages:
   - pkg:pypi/statsmodels?source=hash-mapping
   size: 11910748
   timestamp: 1764983438221
+- pypi: ./
+  name: stress-prediction
+  version: 0.1.dev4+g19b1327fb
+  sha256: a84b406a9e3c80d729ef5e62a47c5e099fc35c152f6addb6949e8ca555d5af93
+  requires_python: ==3.14
+  editable: true
 - pypi: https://files.pythonhosted.org/packages/65/44/bb509c3d2c0b5a87e7a5af1d5917a402a32ff026f777a6d7cb6990746cbb/tabcompleter-1.4.0-py3-none-any.whl
   name: tabcompleter
   version: 1.4.0
@@ -9034,11 +9036,6 @@ packages:
   purls: []
   size: 155869
   timestamp: 1767886839029
-- pypi: ./
-  name: template-project
-  version: 0.11.2.dev12+g6a0bfbe10.d20260127
-  sha256: 2d7b55f8b3d902d48f1ee14e59038b35808d948df58c1f17f35793ed171ef5f4
-  requires_python: ==3.14
 - conda: https://conda.anaconda.org/conda-forge/noarch/terminado-0.18.1-pyh6dadd2b_1.conda
   sha256: b375e8df0d5710717c31e7c8e93c025c37fa3504aea325c7a55509f64e5d4340
   md5: e43ca10d61e55d0a8ec5d8c62474ec9e

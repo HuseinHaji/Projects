@@ -6,7 +6,7 @@ highlighter: shiki
 lineNumbers: false
 info: |
   ## Market Stress System - Monitoring High-Volatility Regimes in Equity Markets
-  Academic presentation with Slidev
+
 drawings:
   persist: false
 transition: fade

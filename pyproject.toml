@@ -21,10 +21,10 @@ classifiers = [
   "Programming Language :: Python :: 3 :: Only",
 ]
 authors = [
-  { name = "Huseyn Hajiyev", email = "janedoe@example-university.com" },
+  { name = "Huseyn Hajiyev", email = "s48hhaji@uni-bonn.de" },
 ]
 maintainers = [
-  { name = "Huseyn Hajiyev", email = "janedoe@example-university.com" },
+  { name = "Huseyn Hajiyev", email = "s48hhaji@uni-bonn.de" },
 ]
 
 [project.readme]

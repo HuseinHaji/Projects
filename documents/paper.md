@@ -1,4 +1,4 @@
-# EXAMPLE PROJECT
+# Market Stress System - Monitoring High-Volatility Regimes in Equity Markets
 
 +++ {"part": "abstract"}
 

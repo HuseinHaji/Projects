@@ -18,8 +18,7 @@ wheels/
 # Documentation
 _build/
 docs/_build/
-docs_template/build/
-docs_template/scripts/latex/*.png
+
 
 # IDE
 .idea/

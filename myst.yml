@@ -3,11 +3,11 @@
 version: 1
 project:
   id: template-project
-  title: EXAMPLE PROJECT
+  title: Market Stress System - Monitoring High-Volatility Regimes in Equity Markets
   description: Template for reproducible research projects in economics
   authors:
-    - name: JANE DOE
-      affiliations: [EXAMPLE UNIVERSITY]
+    - name: Huseyn Hajiyev
+      affiliations: [The University of Bonn]
       email: janedoe@example-university.de
   keywords: [economics, reproducible research]
   toc:

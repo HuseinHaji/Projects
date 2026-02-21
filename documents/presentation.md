@@ -5,22 +5,22 @@ class: text-center
 highlighter: shiki
 lineNumbers: false
 info: |
-  ## EXAMPLE PROJECT
+  ## Market Stress System - Monitoring High-Volatility Regimes in Equity Markets
   Academic presentation with Slidev
 drawings:
   persist: false
 transition: fade
-title: EXAMPLE PROJECT
+title: Market Stress System - Monitoring High-Volatility Regimes in Equity Markets
 mdc: true
 defaults:
   layout: center
 ---
 
-# EXAMPLE PROJECT
+# Market Stress System - Monitoring High-Volatility Regimes in Equity Markets
 
-JANE DOE
+Huseyn Hajiyev
 
-EXAMPLE UNIVERSITY
+The University of Bonn
 
 ---
 

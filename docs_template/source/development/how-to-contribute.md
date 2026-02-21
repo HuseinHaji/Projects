@@ -43,11 +43,11 @@ $ pixi run -e docs view-docs
 1. Implement the fix or new feature.
 
 1. We validate contributions in three ways. First, we have a test suite to check the
-   implementation of template_project. Second, we correct for stylistic errors in code
+   implementation of stress_prediction. Second, we correct for stylistic errors in code
    and documentation using linters. Third, we test whether the documentation builds
    successfully.
 
-   You can run the checks on template_project with `pytest` by running
+   You can run the checks on stress_prediction with `pytest` by running
 
    ```console
    $ pixi run pytest

@@ -6,7 +6,7 @@ import pandas as pd
 import pytest
 from pandas.testing import assert_frame_equal
 
-from template_project.analysis.predict_template import predict_prob_by_age
+from stress_prediction.analysis.predict_template import predict_prob_by_age
 
 
 @pytest.fixture

@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from template_project.analysis.model_template import fit_logit_model
+from stress_prediction.analysis.model_template import fit_logit_model
 
 DESIRED_PRECISION: float = 10e-2
 

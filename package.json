@@ -1,5 +1,5 @@
 {
-  "name": "template_project",
+  "name": "stress_prediction",
   "version": "0.0.1",
   "dependencies": {
     "@slidev/cli": "*",

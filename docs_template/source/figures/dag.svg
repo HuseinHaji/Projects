@@ -122,15 +122,15 @@
 <path fill="none" stroke="black" d="M2121.65,-359.52C2153.75,-349.83 2193.83,-337.74 2227.44,-327.6"/>
 <polygon fill="black" stroke="black" points="2228.09,-331.06 2236.65,-324.82 2226.07,-324.36 2228.09,-331.06"/>
 </g>
-<!-- template_project/final/plot_template.py -->
+<!-- stress_prediction/final/plot_template.py -->
 <g id="node6" class="node">
-<title>template_project/final/plot_template.py</title>
+<title>stress_prediction/final/plot_template.py</title>
 <polygon fill="none" stroke="black" points="1612.96,-324 1316.46,-324 1316.46,-288 1612.96,-288 1612.96,-324"/>
-<text xml:space="preserve" text-anchor="middle" x="1464.71" y="-301.32" font-family="Times,serif" font-size="14.00">template_project/final/plot_template.py</text>
+<text xml:space="preserve" text-anchor="middle" x="1464.71" y="-301.32" font-family="Times,serif" font-size="14.00">stress_prediction/final/plot_template.py</text>
 </g>
-<!-- template_project/final/plot_template.py&#45;&gt;task_final_template.py::task_create_results_table -->
+<!-- stress_prediction/final/plot_template.py&#45;&gt;task_final_template.py::task_create_results_table -->
 <g id="edge5" class="edge">
-<title>template_project/final/plot_template.py&#45;&gt;task_final_template.py::task_create_results_table</title>
+<title>stress_prediction/final/plot_template.py&#45;&gt;task_final_template.py::task_create_results_table</title>
 <path fill="none" stroke="black" d="M1470.64,-287.7C1473.2,-280.24 1476.26,-271.32 1479.12,-262.97"/>
 <polygon fill="black" stroke="black" points="1482.42,-264.13 1482.35,-253.54 1475.8,-261.86 1482.42,-264.13"/>
 </g>
@@ -140,9 +140,9 @@
 <polygon fill="none" stroke="black" points="1174.46,-234 982.08,-252 597.33,-252 404.96,-234 597.33,-216 982.08,-216 1174.46,-234"/>
 <text xml:space="preserve" text-anchor="middle" x="789.71" y="-229.32" font-family="Times,serif" font-size="14.00">task_final_template.py::task_plot_results_by_age[marital_status]</text>
 </g>
-<!-- template_project/final/plot_template.py&#45;&gt;task_final_template.py::task_plot_results_by_age[marital_status] -->
+<!-- stress_prediction/final/plot_template.py&#45;&gt;task_final_template.py::task_plot_results_by_age[marital_status] -->
 <g id="edge6" class="edge">
-<title>template_project/final/plot_template.py&#45;&gt;task_final_template.py::task_plot_results_by_age[marital_status]</title>
+<title>stress_prediction/final/plot_template.py&#45;&gt;task_final_template.py::task_plot_results_by_age[marital_status]</title>
 <path fill="none" stroke="black" d="M1316.16,-289.59C1214.1,-279.01 1078.01,-264.9 969.77,-253.67"/>
 <polygon fill="black" stroke="black" points="970.2,-250.2 959.9,-252.65 969.48,-257.16 970.2,-250.2"/>
 </g>
@@ -152,9 +152,9 @@
 <polygon fill="none" stroke="black" points="2692.91,-234 2482.31,-252 2061.11,-252 1850.51,-234 2061.11,-216 2482.31,-216 2692.91,-234"/>
 <text xml:space="preserve" text-anchor="middle" x="2271.71" y="-229.32" font-family="Times,serif" font-size="14.00">task_final_template.py::task_plot_results_by_age[highest_qualification]</text>
 </g>
-<!-- template_project/final/plot_template.py&#45;&gt;task_final_template.py::task_plot_results_by_age[highest_qualification] -->
+<!-- stress_prediction/final/plot_template.py&#45;&gt;task_final_template.py::task_plot_results_by_age[highest_qualification] -->
 <g id="edge7" class="edge">
-<title>template_project/final/plot_template.py&#45;&gt;task_final_template.py::task_plot_results_by_age[highest_qualification]</title>
+<title>stress_prediction/final/plot_template.py&#45;&gt;task_final_template.py::task_plot_results_by_age[highest_qualification]</title>
 <path fill="none" stroke="black" d="M1613.45,-288.79C1616.22,-288.52 1618.98,-288.26 1621.71,-288 1760.12,-274.87 1915.3,-262.14 2039.31,-252.45"/>
 <polygon fill="black" stroke="black" points="2039.25,-255.96 2048.95,-251.7 2038.71,-248.98 2039.25,-255.96"/>
 </g>
@@ -332,15 +332,15 @@
 <path fill="none" stroke="black" d="M660.39,-575.52C699.57,-565.69 748.65,-553.37 789.44,-543.14"/>
 <polygon fill="black" stroke="black" points="790.12,-546.58 798.96,-540.75 788.41,-539.79 790.12,-546.58"/>
 </g>
-<!-- template_project/analysis/model_template.py -->
+<!-- stress_prediction/analysis/model_template.py -->
 <g id="node21" class="node">
-<title>template_project/analysis/model_template.py</title>
+<title>stress_prediction/analysis/model_template.py</title>
 <polygon fill="none" stroke="black" points="1039.33,-612 700.08,-612 700.08,-576 1039.33,-576 1039.33,-612"/>
-<text xml:space="preserve" text-anchor="middle" x="869.71" y="-589.33" font-family="Times,serif" font-size="14.00">template_project/analysis/model_template.py</text>
+<text xml:space="preserve" text-anchor="middle" x="869.71" y="-589.33" font-family="Times,serif" font-size="14.00">stress_prediction/analysis/model_template.py</text>
 </g>
-<!-- template_project/analysis/model_template.py&#45;&gt;task_analysis_template.py::task_fit_model -->
+<!-- stress_prediction/analysis/model_template.py&#45;&gt;task_analysis_template.py::task_fit_model -->
 <g id="edge27" class="edge">
-<title>template_project/analysis/model_template.py&#45;&gt;task_analysis_template.py::task_fit_model</title>
+<title>stress_prediction/analysis/model_template.py&#45;&gt;task_analysis_template.py::task_fit_model</title>
 <path fill="none" stroke="black" d="M869.71,-575.7C869.71,-568.41 869.71,-559.73 869.71,-551.54"/>
 <polygon fill="black" stroke="black" points="873.21,-551.62 869.71,-541.62 866.21,-551.62 873.21,-551.62"/>
 </g>
@@ -356,21 +356,21 @@
 <path fill="none" stroke="black" d="M827.71,-431.7C827.71,-424.41 827.71,-415.73 827.71,-407.54"/>
 <polygon fill="black" stroke="black" points="831.21,-407.62 827.71,-397.62 824.21,-407.62 831.21,-407.62"/>
 </g>
-<!-- template_project/analysis/predict_template.py -->
+<!-- stress_prediction/analysis/predict_template.py -->
 <g id="node23" class="node">
-<title>template_project/analysis/predict_template.py</title>
+<title>stress_prediction/analysis/predict_template.py</title>
 <polygon fill="none" stroke="black" points="1564.08,-468 1217.33,-468 1217.33,-432 1564.08,-432 1564.08,-468"/>
-<text xml:space="preserve" text-anchor="middle" x="1390.71" y="-445.32" font-family="Times,serif" font-size="14.00">template_project/analysis/predict_template.py</text>
+<text xml:space="preserve" text-anchor="middle" x="1390.71" y="-445.32" font-family="Times,serif" font-size="14.00">stress_prediction/analysis/predict_template.py</text>
 </g>
-<!-- template_project/analysis/predict_template.py&#45;&gt;task_analysis_template.py::task_predict[marital_status] -->
+<!-- stress_prediction/analysis/predict_template.py&#45;&gt;task_analysis_template.py::task_predict[marital_status] -->
 <g id="edge30" class="edge">
-<title>template_project/analysis/predict_template.py&#45;&gt;task_analysis_template.py::task_predict[marital_status]</title>
+<title>stress_prediction/analysis/predict_template.py&#45;&gt;task_analysis_template.py::task_predict[marital_status]</title>
 <path fill="none" stroke="black" d="M1250.09,-431.52C1167.65,-421.27 1063.48,-408.31 979.22,-397.84"/>
 <polygon fill="black" stroke="black" points="979.85,-394.39 969.5,-396.63 978.99,-401.34 979.85,-394.39"/>
 </g>
-<!-- template_project/analysis/predict_template.py&#45;&gt;task_analysis_template.py::task_predict[highest_qualification] -->
+<!-- stress_prediction/analysis/predict_template.py&#45;&gt;task_analysis_template.py::task_predict[highest_qualification] -->
 <g id="edge31" class="edge">
-<title>template_project/analysis/predict_template.py&#45;&gt;task_analysis_template.py::task_predict[highest_qualification]</title>
+<title>stress_prediction/analysis/predict_template.py&#45;&gt;task_analysis_template.py::task_predict[highest_qualification]</title>
 <path fill="none" stroke="black" d="M1558.8,-431.52C1657.96,-421.2 1783.42,-408.15 1884.46,-397.64"/>
 <polygon fill="black" stroke="black" points="1884.63,-401.15 1894.22,-396.63 1883.91,-394.18 1884.63,-401.15"/>
 </g>
@@ -398,27 +398,27 @@
 <path fill="none" stroke="black" d="M1285.71,-647.7C1285.71,-640.41 1285.71,-631.73 1285.71,-623.54"/>
 <polygon fill="black" stroke="black" points="1289.21,-623.62 1285.71,-613.62 1282.21,-623.62 1289.21,-623.62"/>
 </g>
-<!-- template_project/data/stats4schools_smoking_template.csv -->
+<!-- stress_prediction/data/stats4schools_smoking_template.csv -->
 <g id="node26" class="node">
-<title>template_project/data/stats4schools_smoking_template.csv</title>
+<title>stress_prediction/data/stats4schools_smoking_template.csv</title>
 <polygon fill="none" stroke="black" points="1253.21,-756 814.21,-756 814.21,-720 1253.21,-720 1253.21,-756"/>
-<text xml:space="preserve" text-anchor="middle" x="1033.71" y="-733.33" font-family="Times,serif" font-size="14.00">template_project/data/stats4schools_smoking_template.csv</text>
+<text xml:space="preserve" text-anchor="middle" x="1033.71" y="-733.33" font-family="Times,serif" font-size="14.00">stress_prediction/data/stats4schools_smoking_template.csv</text>
 </g>
-<!-- template_project/data/stats4schools_smoking_template.csv&#45;&gt;task_data_management_template.py::task_clean_stats4schools_smoking_data -->
+<!-- stress_prediction/data/stats4schools_smoking_template.csv&#45;&gt;task_data_management_template.py::task_clean_stats4schools_smoking_data -->
 <g id="edge35" class="edge">
-<title>template_project/data/stats4schools_smoking_template.csv&#45;&gt;task_data_management_template.py::task_clean_stats4schools_smoking_data</title>
+<title>stress_prediction/data/stats4schools_smoking_template.csv&#45;&gt;task_data_management_template.py::task_clean_stats4schools_smoking_data</title>
 <path fill="none" stroke="black" d="M1096.65,-719.52C1131.81,-709.75 1175.8,-697.53 1212.5,-687.34"/>
 <polygon fill="black" stroke="black" points="1212.98,-690.84 1221.68,-684.79 1211.11,-684.09 1212.98,-690.84"/>
 </g>
-<!-- template_project/data_management/stats4schools_smoking_template.py -->
+<!-- stress_prediction/data_management/stats4schools_smoking_template.py -->
 <g id="node27" class="node">
-<title>template_project/data_management/stats4schools_smoking_template.py</title>
+<title>stress_prediction/data_management/stats4schools_smoking_template.py</title>
 <polygon fill="none" stroke="black" points="1804.08,-756 1271.33,-756 1271.33,-720 1804.08,-720 1804.08,-756"/>
-<text xml:space="preserve" text-anchor="middle" x="1537.71" y="-733.33" font-family="Times,serif" font-size="14.00">template_project/data_management/stats4schools_smoking_template.py</text>
+<text xml:space="preserve" text-anchor="middle" x="1537.71" y="-733.33" font-family="Times,serif" font-size="14.00">stress_prediction/data_management/stats4schools_smoking_template.py</text>
 </g>
-<!-- template_project/data_management/stats4schools_smoking_template.py&#45;&gt;task_data_management_template.py::task_clean_stats4schools_smoking_data -->
+<!-- stress_prediction/data_management/stats4schools_smoking_template.py&#45;&gt;task_data_management_template.py::task_clean_stats4schools_smoking_data -->
 <g id="edge36" class="edge">
-<title>template_project/data_management/stats4schools_smoking_template.py&#45;&gt;task_data_management_template.py::task_clean_stats4schools_smoking_data</title>
+<title>stress_prediction/data_management/stats4schools_smoking_template.py&#45;&gt;task_data_management_template.py::task_clean_stats4schools_smoking_data</title>
 <path fill="none" stroke="black" d="M1474.77,-719.52C1439.61,-709.75 1395.62,-697.53 1358.92,-687.34"/>
 <polygon fill="black" stroke="black" points="1360.31,-684.09 1349.74,-684.79 1358.44,-690.84 1360.31,-684.09"/>
 </g>

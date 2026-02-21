@@ -5,9 +5,9 @@ from pathlib import Path
 import pandas as pd
 import pytask
 
-from template_project.analysis.model_template import fit_logit_model
-from template_project.analysis.predict_template import predict_prob_by_age
-from template_project.config import BLD, SRC, TEMPLATE_GROUPS
+from stress_prediction.analysis.model_template import fit_logit_model
+from stress_prediction.analysis.predict_template import predict_prob_by_age
+from stress_prediction.config import BLD, SRC, TEMPLATE_GROUPS
 
 # In practical scenarios, fitting multiple models for different formulas is common. With
 # pytask, we can iterate over these formulas to fit each model using the same code block

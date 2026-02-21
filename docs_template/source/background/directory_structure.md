@@ -4,7 +4,7 @@
 
 ## The big picture
 
-The following graph shows the contents of template_project root directory after
+The following graph shows the contents of stress_prediction root directory after
 executing `pytask`
 
 ```{mermaid}
@@ -12,7 +12,7 @@ flowchart LR
     Root["project root"]
 
     Src["src/"]
-    SrcSub["template_project/"]
+    SrcSub["stress_prediction/"]
     SrcSubDir["analysis/<br/>data/<br/>data_management/<br/>final/<br/>\_\_init\_\_.py<br/>config.py"]
     Tests["tests/"]
     Documents["documents/"]
@@ -102,7 +102,7 @@ For the project documentation (this site), use:
 pixi run -e docs view-docs
 ```
 
-The contents of `src/template_project/` follow the steps of the analysis workflow, with
+The contents of `src/stress_prediction/` follow the steps of the analysis workflow, with
 subdirectories for data management, analysis, and final output generation.
 
 All outputs from these steps are placed in the `bld/` directory, organized by type:
@@ -135,7 +135,7 @@ The configuration file **`myst.yml`** lives in the **project root** (not inside
 `jupyter book build` is run. This file defines project metadata, bibliography settings,
 and PDF export options.
 
-The tasks in `src/template_project/final/task_final_template.py` generate figures and
+The tasks in `src/stress_prediction/final/task_final_template.py` generate figures and
 tables into `documents/public/` and `documents/tables/` respectively. These are then
 included in the paper and presentation using MyST Markdown directives (e.g., `{figure}`
 and `{include}`).
@@ -146,7 +146,7 @@ Lets go one step deeper and consider the root/src directory in more detail:
 
 ```{mermaid}
 flowchart LR
-    Root["src/template_project/"]
+    Root["src/stress_prediction/"]
 
     Analysis["analysis/"]
     Data["data/"]

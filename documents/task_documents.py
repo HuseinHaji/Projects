@@ -7,7 +7,7 @@ from pathlib import Path
 
 import pytask
 
-from template_project.config import DOCUMENTS, ROOT
+from stress_prediction.config import DOCUMENTS, ROOT
 
 for fmt, produces in {
     "pdf": ROOT / "paper.pdf",

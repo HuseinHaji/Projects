@@ -9,10 +9,10 @@ meet your specific needs.
 
 Open the entire directory in VS Code.
 
-1. Search for `template_project` in the entire codebase and replace it with
+1. Search for `stress_prediction` in the entire codebase and replace it with
    `new_project_name`, i.e., a concise version of your project's name (often called a
    "slug").
-1. Rename the folder `src/template_project` to `src/new_project_name`.
+1. Rename the folder `src/stress_prediction` to `src/new_project_name`.
 
 ```{warning}
 Your project slug `new_project_name` must be a valid Python identifier, i.e., it must
@@ -29,7 +29,7 @@ attributed to changes you make rather than the original template.
 1. Open a terminal and navigate to the project root
 
    ```console
-   $ cd /to/root/of/template_project
+   $ cd /to/root/of/stress_prediction
    ```
 
 1. Install the pre-commit hooks

@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./b2b_credit_risk_analysis/src"
+    ]
+}

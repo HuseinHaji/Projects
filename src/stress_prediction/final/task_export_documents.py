@@ -39,9 +39,7 @@ Failure modes
 from __future__ import annotations
 
 import shutil
-from collections.abc import Mapping
 from pathlib import Path
-from types import MappingProxyType
 
 import pandas as pd
 
@@ -49,42 +47,6 @@ from stress_prediction.utils.config import project_paths
 
 PATHS = project_paths()
 ROOT = PATHS.root
-
-FIGURE_DEPENDS_ON: Mapping[str, Path] = MappingProxyType(
-    {
-        "roc_curve": PATHS.fig_roc_curve,
-        "predicted_probability": PATHS.fig_predicted_probability,
-        "model_comparison_auc": PATHS.fig_model_comparison_auc,
-        "volatility_stress": PATHS.fig_volatility_stress,
-    }
-)
-
-FIGURE_PRODUCES: Mapping[str, Path] = MappingProxyType(
-    {
-        "roc_curve": ROOT / "documents" / "public" / "roc_curve.png",
-        "predicted_probability": (
-            ROOT / "documents" / "public" / "predicted_probability.png"
-        ),
-        "model_comparison_auc": (
-            ROOT / "documents" / "public" / "model_comparison_auc.png"
-        ),
-        "volatility_stress": (ROOT / "documents" / "public" / "volatility_stress.png"),
-    }
-)
-
-TABLE_DEPENDS_ON: Mapping[str, Path] = MappingProxyType(
-    {
-        "metrics": PATHS.tables_dir / "metrics.csv",
-        "model_comparison": PATHS.tables_dir / "model_comparison.csv",
-    }
-)
-
-TABLE_PRODUCES: Mapping[str, Path] = MappingProxyType(
-    {
-        "metrics": ROOT / "documents" / "tables" / "metrics.md",
-        "model_comparison": ROOT / "documents" / "tables" / "model_comparison.md",
-    }
-)
 
 
 def _write_markdown_table(source: Path, destination: Path) -> None:
@@ -98,37 +60,53 @@ def _write_markdown_table(source: Path, destination: Path) -> None:
     )
 
 
-def task_export_document_figures(
-    depends_on: Mapping[str, Path] = FIGURE_DEPENDS_ON,
-    produces: Mapping[str, Path] = FIGURE_PRODUCES,
+def task_export_roc_curve(
+    depends_on: Path = PATHS.fig_roc_curve,
+    produces: Path = ROOT / "documents" / "public" / "roc_curve.png",
 ) -> None:
-    """Copy final figures from ``bld/figures`` to ``documents/public``.
-
-    Parameters
-    ----------
-    depends_on
-        Source figures in ``bld/figures``.
-    produces
-        Destination figures in ``documents/public``.
-    """
-    for key, src in depends_on.items():
-        dst = produces[key]
-        dst.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(src, dst)
+    """Copy the ROC curve figure to the documents directory."""
+    produces.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(depends_on, produces)
 
 
-def task_export_document_tables(
-    depends_on: Mapping[str, Path] = TABLE_DEPENDS_ON,
-    produces: Mapping[str, Path] = TABLE_PRODUCES,
+def task_export_predicted_probability(
+    depends_on: Path = PATHS.fig_predicted_probability,
+    produces: Path = ROOT / "documents" / "public" / "predicted_probability.png",
 ) -> None:
-    """Convert CSV tables from ``bld/tables`` to Markdown tables.
+    """Copy the predicted probability figure to the documents directory."""
+    produces.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(depends_on, produces)
 
-    Parameters
-    ----------
-    depends_on
-        Source CSV tables in ``bld/tables``.
-    produces
-        Destination Markdown tables in ``documents/tables``.
-    """
-    for key, src in depends_on.items():
-        _write_markdown_table(source=src, destination=produces[key])
+
+def task_export_model_comparison_auc(
+    depends_on: Path = PATHS.fig_model_comparison_auc,
+    produces: Path = ROOT / "documents" / "public" / "model_comparison_auc.png",
+) -> None:
+    """Copy the model comparison AUC figure to the documents directory."""
+    produces.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(depends_on, produces)
+
+
+def task_export_volatility_stress(
+    depends_on: Path = PATHS.fig_volatility_stress,
+    produces: Path = ROOT / "documents" / "public" / "volatility_stress.png",
+) -> None:
+    """Copy the volatility stress figure to the documents directory."""
+    produces.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(depends_on, produces)
+
+
+def task_export_metrics_table(
+    depends_on: Path = PATHS.tables_dir / "metrics.csv",
+    produces: Path = ROOT / "documents" / "tables" / "metrics.md",
+) -> None:
+    """Convert the metrics CSV table to a Markdown table."""
+    _write_markdown_table(source=depends_on, destination=produces)
+
+
+def task_export_model_comparison_table(
+    depends_on: Path = PATHS.tables_dir / "model_comparison.csv",
+    produces: Path = ROOT / "documents" / "tables" / "model_comparison.md",
+) -> None:
+    """Convert the model comparison CSV table to a Markdown table."""
+    _write_markdown_table(source=depends_on, destination=produces)

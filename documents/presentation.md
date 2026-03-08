@@ -11,7 +11,7 @@ mdc: true
 # Market Stress Early-Warning System
 ### Monitoring High-Volatility Regimes in Equity Markets
 
-Husein Hajiyev
+Huseyn Hajiyev
 EPP Project
 
 ---

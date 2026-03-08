@@ -76,11 +76,13 @@ platforms = [ "linux-64", "osx-64", "osx-arm64", "win-64" ]
 [tool.pixi.dependencies]
 jupyter-book = ">=2.0"
 jupyterlab = "*"
+joblib = "*"
 nodejs = "*"
 numpy = ">=2.4"
 pandas = ">=2.2"
 plotly = ">=6.5"
 prek = "*"
+pyarrow = "*"
 pygraphviz = "*"
 pytask = "*"
 pytask-parallel = "*"
@@ -90,6 +92,9 @@ pytest-xdist = "*"
 python-kaleido = ">=1.1"
 statsmodels = "*"
 ty = "*"
+requests = "*"
+matplotlib = "*"
+scikit-learn = "*"
 
 [tool.pixi.pypi-dependencies]
 stress_prediction = { path = ".", editable = true }

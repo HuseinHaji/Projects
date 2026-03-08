@@ -1,22 +1,19 @@
 -- View: Monthly Portfolio KPIs
 -- Aggregated portfolio metrics by month
-CREATE OR REPLACE VIEW credit_risk.vw_monthly_portfolio_kpis AS
+CREATE OR REPLACE VIEW credit_risk_dw.vw_monthly_portfolio_kpis AS
 SELECT
-  fes.year_month,
-  COUNT(DISTINCT fes.customer_key) AS active_customers,
-  COUNT(DISTINCT fde.customer_key) AS defaulted_customers,
-  ROUND(COUNT(DISTINCT fde.customer_key)::NUMERIC / COUNT(DISTINCT fes.customer_key) * 100, 2) AS default_rate_pct,
-  ROUND(SUM(fes.current_exposure), 2) AS total_exposure_eur,
-  ROUND(SUM(fes.overdue_exposure), 2) AS total_overdue_exposure_eur,
-  ROUND(SUM(fes.overdue_exposure) / SUM(fes.current_exposure) * 100, 2) AS portfolio_overdue_ratio_pct,
-  ROUND(AVG(fes.utilization_ratio), 4) AS avg_utilization_ratio,
-  ROUND(AVG(fes.avg_days_past_due), 2) AS avg_dpd,
-  COUNT(DISTINCT CASE WHEN fes.warning_flag THEN fes.customer_key END) AS customers_with_warning,
-  COUNT(DISTINCT CASE WHEN fes.stress_flag THEN fes.customer_key END) AS customers_under_stress
-FROM credit_risk.fact_exposure_snapshot fes
-LEFT JOIN credit_risk.fact_default_event fde ON fes.customer_key = fde.customer_key
-  AND fes.snapshot_date >= fde.default_date
-GROUP BY fes.year_month
-ORDER BY fes.year_month DESC;
-
-COMMENT ON VIEW credit_risk.vw_monthly_portfolio_kpis IS 'Portfolio-level KPIs aggregated by month';
+    dd.year_month,
+    SUM(fes.current_exposure) AS total_exposure,
+    SUM(fes.overdue_exposure) AS overdue_exposure,
+    CASE
+        WHEN SUM(fes.current_exposure) = 0 THEN 0
+        ELSE SUM(fes.overdue_exposure) / SUM(fes.current_exposure)
+    END AS overdue_rate,
+    AVG(fes.utilization_ratio) AS avg_utilization_ratio,
+    AVG(fes.avg_days_past_due) AS avg_days_past_due,
+    SUM(fes.warning_flag) AS warning_flag_count,
+    SUM(fes.default_in_next_90d) AS default_target_count
+FROM credit_risk_dw.fact_exposure_snapshot fes
+JOIN credit_risk_dw.dim_date dd
+    ON fes.snapshot_date_key = dd.date_key
+GROUP BY dd.year_month;

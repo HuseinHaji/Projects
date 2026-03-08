@@ -1,34 +1,31 @@
 -- Quality Check: Primary Key Uniqueness
 -- Validates that primary keys are unique and not NULL
-SELECT
-  'dim_customer_key' AS check_name,
-  COUNT(*) - COUNT(DISTINCT customer_key) AS duplicate_count
-FROM credit_risk.dim_customer
-UNION ALL
-SELECT
-  'fact_invoice_key',
-  COUNT(*) - COUNT(DISTINCT invoice_key)
-FROM credit_risk.fact_invoice
-UNION ALL
-SELECT
-  'fact_payment_key',
-  COUNT(*) - COUNT(DISTINCT payment_key)
-FROM credit_risk.fact_payment
-UNION ALL
-SELECT
-  'fact_default_event_key',
-  COUNT(*) - COUNT(DISTINCT default_event_key)
-FROM credit_risk.fact_default_event
-UNION ALL
-SELECT
-  'dim_country_key',
-  COUNT(*) - COUNT(DISTINCT country_key)
-FROM credit_risk.dim_country
-UNION ALL
-SELECT
-  'dim_industry_key',
-  COUNT(*) - COUNT(DISTINCT industry_key)
-FROM credit_risk.dim_industry
-ORDER BY check_name;
+SELECT customer_key, COUNT(*)
+FROM credit_risk_dw.dim_customer
+GROUP BY customer_key
+HAVING COUNT(*) > 1;
 
-COMMENT ON TABLE credit_risk.dim_customer IS 'Verify primary key uniqueness across all tables';
+SELECT invoice_key, COUNT(*)
+FROM credit_risk_dw.fact_invoice
+GROUP BY invoice_key
+HAVING COUNT(*) > 1;
+
+SELECT payment_key, COUNT(*)
+FROM credit_risk_dw.fact_payment
+GROUP BY payment_key
+HAVING COUNT(*) > 1;
+
+SELECT default_event_key, COUNT(*)
+FROM credit_risk_dw.fact_default_event
+GROUP BY default_event_key
+HAVING COUNT(*) > 1;
+
+SELECT exposure_snapshot_key, COUNT(*)
+FROM credit_risk_dw.fact_exposure_snapshot
+GROUP BY exposure_snapshot_key
+HAVING COUNT(*) > 1;
+
+SELECT rating_history_key, COUNT(*)
+FROM credit_risk_dw.fact_rating_history
+GROUP BY rating_history_key
+HAVING COUNT(*) > 1;

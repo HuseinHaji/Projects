@@ -1,46 +1,39 @@
 -- View: Top Deteriorating Customers
 -- Identifies customers with the worst rating changes and increased risk
-CREATE OR REPLACE VIEW credit_risk.vw_top_deteriorating_customers AS
-WITH latest_snapshot AS (
-  SELECT
-    customer_key,
-    snapshot_date,
-    rating_code,
-    rating_score,
-    current_exposure,
-    utilization_ratio,
-    avg_days_past_due,
-    ROW_NUMBER() OVER (PARTITION BY customer_key ORDER BY snapshot_date DESC) AS rn
-  FROM credit_risk.fact_exposure_snapshot
-),
-previous_snapshot AS (
-  SELECT
-    customer_key,
-    snapshot_date,
-    rating_code,
-    rating_score,
-    ROW_NUMBER() OVER (PARTITION BY customer_key ORDER BY snapshot_date DESC) AS rn
-  FROM credit_risk.fact_exposure_snapshot
+CREATE OR REPLACE VIEW credit_risk_dw.vw_top_deteriorating_customers AS
+WITH base AS (
+    SELECT
+        fes.customer_key,
+        dd.full_date AS snapshot_date,
+        fes.current_exposure,
+        fes.overdue_exposure,
+        fes.utilization_ratio,
+        fes.avg_days_past_due,
+        fes.notch_change,
+        fes.downgrade_flag,
+        LAG(fes.avg_days_past_due) OVER (
+            PARTITION BY fes.customer_key ORDER BY dd.full_date
+        ) AS prev_avg_dpd,
+        LAG(fes.utilization_ratio) OVER (
+            PARTITION BY fes.customer_key ORDER BY dd.full_date
+        ) AS prev_utilization
+    FROM credit_risk_dw.fact_exposure_snapshot fes
+    JOIN credit_risk_dw.dim_date dd
+        ON fes.snapshot_date_key = dd.date_key
 )
 SELECT
-  dc.customer_id,
-  dc.customer_name,
-  c.country_name,
-  i.industry_name,
-  ls.rating_code AS current_rating,
-  ps.rating_code AS previous_rating,
-  (ps.rating_score - ls.rating_score)::SMALLINT AS rating_deterioration_notches,
-  ls.current_exposure,
-  ls.utilization_ratio,
-  ls.avg_days_past_due,
-  ls.snapshot_date AS last_snapshot_date
-FROM latest_snapshot ls
-LEFT JOIN previous_snapshot ps ON ls.customer_key = ps.customer_key AND ps.rn = 2
-LEFT JOIN credit_risk.dim_customer dc ON ls.customer_key = dc.customer_key
-LEFT JOIN credit_risk.dim_country c ON dc.country_key = c.country_key
-LEFT JOIN credit_risk.dim_industry i ON dc.industry_key = i.industry_key
-WHERE ls.rn = 1 AND (ps.rating_score - ls.rating_score) > 0
-ORDER BY rating_deterioration_notches DESC
-LIMIT 50;
-
-COMMENT ON VIEW credit_risk.vw_top_deteriorating_customers IS 'Top 50 customers with worst rating deterioration';
+    customer_key,
+    snapshot_date,
+    current_exposure,
+    overdue_exposure,
+    utilization_ratio,
+    avg_days_past_due,
+    notch_change,
+    downgrade_flag,
+    avg_days_past_due - COALESCE(prev_avg_dpd, avg_days_past_due) AS dpd_delta,
+    utilization_ratio - COALESCE(prev_utilization, utilization_ratio) AS util_delta
+FROM base
+WHERE
+    downgrade_flag = 1
+    OR avg_days_past_due - COALESCE(prev_avg_dpd, 0) > 10
+    OR utilization_ratio - COALESCE(prev_utilization, 0) > 0.10;

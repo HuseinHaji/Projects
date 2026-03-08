@@ -1,22 +1,16 @@
 -- Fact: Rating History
-CREATE TABLE IF NOT EXISTS credit_risk.fact_rating_history (
-  rating_history_key BIGINT PRIMARY KEY,
-  customer_key BIGINT NOT NULL REFERENCES credit_risk.dim_customer(customer_key),
-  rating_key INTEGER NOT NULL REFERENCES credit_risk.dim_risk_rating(rating_key),
-  date_key INTEGER NOT NULL REFERENCES credit_risk.dim_date(date_key),
-  rating_date DATE NOT NULL,
-  rating_code VARCHAR(10) NOT NULL,
-  rating_score SMALLINT NOT NULL,
-  previous_rating_code VARCHAR(10),
-  previous_rating_score SMALLINT,
-  notch_change SMALLINT,
-  reason_for_change VARCHAR(100),
-  is_downgrade BOOLEAN DEFAULT false,
-  is_upgrade BOOLEAN DEFAULT false,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+CREATE TABLE credit_risk_dw.fact_rating_history (
+    rating_history_key    BIGINT PRIMARY KEY,
+    customer_key          INTEGER NOT NULL,
+    snapshot_date_key     INTEGER NOT NULL,
+    rating_key            INTEGER NOT NULL,
+    rating_score          INTEGER NOT NULL,
+    notch_change          INTEGER,
+    downgrade_flag        INTEGER NOT NULL,
+    CONSTRAINT fk_rating_hist_customer
+        FOREIGN KEY (customer_key) REFERENCES credit_risk_dw.dim_customer(customer_key),
+    CONSTRAINT fk_rating_hist_date
+        FOREIGN KEY (snapshot_date_key) REFERENCES credit_risk_dw.dim_date(date_key),
+    CONSTRAINT fk_rating_hist_rating
+        FOREIGN KEY (rating_key) REFERENCES credit_risk_dw.dim_risk_rating(rating_key)
 );
-
-CREATE INDEX idx_fact_rating_customer ON credit_risk.fact_rating_history(customer_key);
-CREATE INDEX idx_fact_rating_date ON credit_risk.fact_rating_history(rating_date);
-CREATE INDEX idx_fact_rating_code ON credit_risk.fact_rating_history(rating_code);
-COMMENT ON TABLE credit_risk.fact_rating_history IS 'Historical rating changes and transitions';

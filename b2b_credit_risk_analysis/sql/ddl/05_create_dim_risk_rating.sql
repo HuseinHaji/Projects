@@ -1,14 +1,9 @@
 -- Dimension: Risk Rating
-CREATE TABLE IF NOT EXISTS credit_risk.dim_risk_rating (
-  rating_key SERIAL PRIMARY KEY,
-  rating_code VARCHAR(10) UNIQUE NOT NULL,
-  rating_score SMALLINT NOT NULL,
-  rating_category VARCHAR(50) NOT NULL,
-  risk_tier VARCHAR(20) NOT NULL,
-  pdo_annual_pct DECIMAL(5, 2),
-  lgd_pct DECIMAL(5, 2),
-  description TEXT,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+CREATE TABLE credit_risk_dw.dim_risk_rating (
+    rating_key          INTEGER PRIMARY KEY,
+    rating_code         VARCHAR(10) NOT NULL UNIQUE,
+    rating_score        INTEGER NOT NULL,
+    rating_bucket       VARCHAR(20) NOT NULL,
+    pd_band_low         DECIMAL(8,4),
+    pd_band_high        DECIMAL(8,4)
 );
-
-COMMENT ON TABLE credit_risk.dim_risk_rating IS 'Risk rating dimension with PD/LGD parameters';

@@ -1,25 +1,20 @@
 -- Fact: Invoice
-CREATE TABLE IF NOT EXISTS credit_risk.fact_invoice (
-  invoice_key BIGINT PRIMARY KEY,
-  invoice_id VARCHAR(50) NOT NULL,
-  customer_key BIGINT NOT NULL REFERENCES credit_risk.dim_customer(customer_key),
-  invoice_date_key INTEGER NOT NULL REFERENCES credit_risk.dim_date(date_key),
-  due_date_key INTEGER NOT NULL REFERENCES credit_risk.dim_date(date_key),
-  invoice_date DATE NOT NULL,
-  due_date DATE NOT NULL,
-  invoice_amount DECIMAL(15, 2) NOT NULL,
-  currency_code VARCHAR(3) DEFAULT 'EUR',
-  payment_terms_days SMALLINT,
-  product_category VARCHAR(100),
-  insured_flag BOOLEAN DEFAULT true,
-  invoice_status VARCHAR(20),
-  snapshot_month VARCHAR(7),
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+CREATE TABLE credit_risk_dw.fact_invoice (
+    invoice_key          BIGINT PRIMARY KEY,
+    invoice_id           VARCHAR(50) NOT NULL UNIQUE,
+    customer_key         INTEGER NOT NULL,
+    invoice_date_key     INTEGER NOT NULL,
+    due_date_key         INTEGER NOT NULL,
+    invoice_amount       DECIMAL(18,2) NOT NULL,
+    currency_code        VARCHAR(10) NOT NULL,
+    payment_terms_days   INTEGER NOT NULL,
+    product_category     VARCHAR(100),
+    insured_flag         INTEGER NOT NULL,
+    invoice_status       VARCHAR(30) NOT NULL,
+    CONSTRAINT fk_invoice_customer
+        FOREIGN KEY (customer_key) REFERENCES credit_risk_dw.dim_customer(customer_key),
+    CONSTRAINT fk_invoice_invoice_date
+        FOREIGN KEY (invoice_date_key) REFERENCES credit_risk_dw.dim_date(date_key),
+    CONSTRAINT fk_invoice_due_date
+        FOREIGN KEY (due_date_key) REFERENCES credit_risk_dw.dim_date(date_key)
 );
-
-CREATE INDEX idx_fact_invoice_customer ON credit_risk.fact_invoice(customer_key);
-CREATE INDEX idx_fact_invoice_date ON credit_risk.fact_invoice(invoice_date);
-CREATE INDEX idx_fact_invoice_due ON credit_risk.fact_invoice(due_date);
-CREATE INDEX idx_fact_invoice_status ON credit_risk.fact_invoice(invoice_status);
-COMMENT ON TABLE credit_risk.fact_invoice IS 'Individual invoice transactions';

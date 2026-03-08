@@ -1,58 +1,22 @@
 -- Quality Check: Row Count Validation
 -- Verifies that row counts match expectations between staging and loaded tables
-SELECT
-  'stg_customer' AS table_name,
-  COUNT(*) AS row_count,
-  CURRENT_TIMESTAMP AS check_timestamp
-FROM credit_risk.stg_customer
+SELECT 'dim_date' AS table_name, COUNT(*) AS row_count
+FROM credit_risk_dw.dim_date
 UNION ALL
-SELECT
-  'stg_customer_month_panel',
-  COUNT(*),
-  CURRENT_TIMESTAMP
-FROM credit_risk.stg_customer_month_panel
+SELECT 'dim_country', COUNT(*) FROM credit_risk_dw.dim_country
 UNION ALL
-SELECT
-  'stg_invoice',
-  COUNT(*),
-  CURRENT_TIMESTAMP
-FROM credit_risk.stg_invoice
+SELECT 'dim_industry', COUNT(*) FROM credit_risk_dw.dim_industry
 UNION ALL
-SELECT
-  'stg_payment',
-  COUNT(*),
-  CURRENT_TIMESTAMP
-FROM credit_risk.stg_payment
+SELECT 'dim_risk_rating', COUNT(*) FROM credit_risk_dw.dim_risk_rating
 UNION ALL
-SELECT
-  'stg_default_event',
-  COUNT(*),
-  CURRENT_TIMESTAMP
-FROM credit_risk.stg_default_event
+SELECT 'dim_customer', COUNT(*) FROM credit_risk_dw.dim_customer
 UNION ALL
-SELECT
-  'dim_customer',
-  COUNT(*),
-  CURRENT_TIMESTAMP
-FROM credit_risk.dim_customer
+SELECT 'fact_exposure_snapshot', COUNT(*) FROM credit_risk_dw.fact_exposure_snapshot
 UNION ALL
-SELECT
-  'fact_invoice',
-  COUNT(*),
-  CURRENT_TIMESTAMP
-FROM credit_risk.fact_invoice
+SELECT 'fact_invoice', COUNT(*) FROM credit_risk_dw.fact_invoice
 UNION ALL
-SELECT
-  'fact_payment',
-  COUNT(*),
-  CURRENT_TIMESTAMP
-FROM credit_risk.fact_payment
+SELECT 'fact_payment', COUNT(*) FROM credit_risk_dw.fact_payment
 UNION ALL
-SELECT
-  'fact_default_event',
-  COUNT(*),
-  CURRENT_TIMESTAMP
-FROM credit_risk.fact_default_event
-ORDER BY table_name;
-
-COMMENT ON TABLE credit_risk.stg_customer IS 'Row count check to identify data completeness';
+SELECT 'fact_default_event', COUNT(*) FROM credit_risk_dw.fact_default_event
+UNION ALL
+SELECT 'fact_rating_history', COUNT(*) FROM credit_risk_dw.fact_rating_history;

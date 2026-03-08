@@ -1,25 +1,24 @@
 -- Dimension: Customer
-CREATE TABLE IF NOT EXISTS credit_risk.dim_customer (
-  customer_key BIGINT PRIMARY KEY,
-  customer_id VARCHAR(20) NOT NULL,
-  customer_name VARCHAR(255) NOT NULL,
-  country_key INTEGER NOT NULL REFERENCES credit_risk.dim_country(country_key),
-  industry_key INTEGER NOT NULL REFERENCES credit_risk.dim_industry(industry_key),
-  company_size VARCHAR(20) NOT NULL,
-  years_in_business SMALLINT,
-  annual_revenue_eur DECIMAL(15, 2),
-  employee_count INTEGER,
-  legal_form VARCHAR(50),
-  parent_group_flag BOOLEAN DEFAULT false,
-  base_risk_score DECIMAL(5, 3),
-  base_insured_limit DECIMAL(15, 2),
-  onboarding_date DATE,
-  active_flag BOOLEAN DEFAULT true,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+CREATE TABLE credit_risk_dw.dim_customer (
+    customer_key            INTEGER PRIMARY KEY,
+    customer_id             VARCHAR(50) NOT NULL UNIQUE,
+    customer_name           VARCHAR(200) NOT NULL,
+    country_key             INTEGER NOT NULL,
+    industry_key            INTEGER NOT NULL,
+    company_size            VARCHAR(20) NOT NULL,
+    years_in_business       INTEGER NOT NULL,
+    annual_revenue_eur      DECIMAL(18,2) NOT NULL,
+    employee_count          INTEGER NOT NULL,
+    onboarding_date_key     INTEGER NOT NULL,
+    legal_form              VARCHAR(50),
+    parent_group_flag       INTEGER NOT NULL,
+    base_risk_score         DECIMAL(12,6),
+    base_insured_limit      DECIMAL(18,2),
+    active_flag             INTEGER NOT NULL,
+    CONSTRAINT fk_dim_customer_country
+        FOREIGN KEY (country_key) REFERENCES credit_risk_dw.dim_country(country_key),
+    CONSTRAINT fk_dim_customer_industry
+        FOREIGN KEY (industry_key) REFERENCES credit_risk_dw.dim_industry(industry_key),
+    CONSTRAINT fk_dim_customer_onboard_date
+        FOREIGN KEY (onboarding_date_key) REFERENCES credit_risk_dw.dim_date(date_key)
 );
-
-CREATE INDEX idx_dim_customer_id ON credit_risk.dim_customer(customer_id);
-CREATE INDEX idx_dim_customer_country ON credit_risk.dim_customer(country_key);
-CREATE INDEX idx_dim_customer_industry ON credit_risk.dim_customer(industry_key);
-COMMENT ON TABLE credit_risk.dim_customer IS 'Master customer dimension with profile and risk attributes';

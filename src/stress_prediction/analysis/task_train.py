@@ -1,52 +1,63 @@
-"""Compute evaluation metrics from backtest predictions.
+"""Train a logistic regression model on the training split.
 
 Purpose
 -------
-Compute classification metrics (e.g., AUC) using the test-set predictions
-produced by the expanding-window backtest.
+Fit the logistic regression classifier using the features dataset and save the
+trained model artifact for reuse or inspection.
 
 Inputs
 ------
-- bld/data/predictions/predictions.parquet
+- bld/data/features/spx_features.parquet
 
 Outputs
 -------
-- bld/tables/metrics.csv
+- bld/models/logreg.joblib
 
 Assumptions
 -----------
-- Predictions parquet contains y_true and proba columns.
+- The dataset contains a 'split' column with 'train' rows.
+- The model trainer selects its own feature columns internally.
 
 Failure modes
 -------------
-- Missing columns or empty predictions file.
+- Missing feature columns or label column.
+- Empty training set.
 """
+
 from __future__ import annotations
 
 from pathlib import Path
 
+import joblib
 import pandas as pd
 
-from stress_prediction.utils.config import project_paths
-from stress_prediction.utils.metrics import compute_metrics_from_predictions
+from stress_prediction.utils.config import MODEL, project_paths
+from stress_prediction.utils.model import train_logistic_regression
+
+PATHS = project_paths()
 
 
-def task_evaluate_model(
-    depends_on: Path = project_paths().predictions_parquet,
-    produces: Path = project_paths().metrics_csv,
+def task_train_model(
+    depends_on: Path = PATHS.features_parquet,
+    produces: Path = PATHS.model_joblib,
 ) -> None:
-    """Compute metrics table and write it to CSV.
+    """Train logistic regression on TRAIN data and save the fitted model.
 
     Parameters
     ----------
     depends_on:
-        Predictions parquet.
+        Features parquet file.
     produces:
-        Metrics CSV path.
+        Model artifact path (joblib).
     """
-    pred = pd.read_parquet(depends_on)
-
-    metrics = compute_metrics_from_predictions(pred, y_col="y_true", proba_col="proba")
-
+    df = pd.read_parquet(depends_on)
+    model = train_logistic_regression(
+        df,
+        split_col="split",
+        label_col="stress",
+        random_state=MODEL.random_state,
+        max_iter=MODEL.max_iter,
+        solver=MODEL.solver,
+    )
     produces.parent.mkdir(parents=True, exist_ok=True)
-    metrics.to_csv(produces, index=False)
+    joblib.dump(model, produces)

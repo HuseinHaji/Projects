@@ -227,6 +227,9 @@ Project template inspired by
 
 **Huseyn Hajiyev**
 
+- [![GitHub](https://img.shields.io/badge/GitHub-HuseinHaji-black?logo=github)](https://github.com/HuseinHaji)
+- [![LinkedIn](https://img.shields.io/badge/LinkedIn-Huseyn%20Hajiyev-blue?logo=linkedin)](https://www.linkedin.com/in/huseynhajiyev10/)
+
 ______________________________________________________________________
 
 **Questions?** Open an issue on GitHub or contact the author directly.

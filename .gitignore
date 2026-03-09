@@ -115,4 +115,4 @@ dmypy.json
 node_modules/
 *.db
 *.sqlite
-*.sqlite3
+*.sqlite3market_stress_warning/

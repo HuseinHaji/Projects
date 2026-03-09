@@ -1,5 +1,3 @@
--- View: Top Deteriorating Customers
--- Identifies customers with the worst rating changes and increased risk
 CREATE OR REPLACE VIEW credit_risk_dw.vw_top_deteriorating_customers AS
 WITH base AS (
     SELECT
@@ -12,10 +10,12 @@ WITH base AS (
         fes.notch_change,
         fes.downgrade_flag,
         LAG(fes.avg_days_past_due) OVER (
-            PARTITION BY fes.customer_key ORDER BY dd.full_date
+            PARTITION BY fes.customer_key
+            ORDER BY dd.full_date
         ) AS prev_avg_dpd,
         LAG(fes.utilization_ratio) OVER (
-            PARTITION BY fes.customer_key ORDER BY dd.full_date
+            PARTITION BY fes.customer_key
+            ORDER BY dd.full_date
         ) AS prev_utilization
     FROM credit_risk_dw.fact_exposure_snapshot fes
     JOIN credit_risk_dw.dim_date dd

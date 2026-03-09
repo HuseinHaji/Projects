@@ -1,17 +1,17 @@
--- Analytics: Monthly Portfolio Summary
--- Comprehensive portfolio health dashboard metrics
 SELECT
-  fes.year_month,
-  COUNT(DISTINCT fes.customer_key) AS total_customers,
-  ROUND(SUM(fes.monthly_sales_estimate), 2) AS monthly_sales_eur,
-  ROUND(SUM(fes.current_exposure), 2) AS current_exposure_eur,
-  ROUND(SUM(fes.overdue_exposure), 2) AS overdue_exposure_eur,
-  ROUND(SUM(fes.overdue_exposure) / SUM(fes.current_exposure) * 100, 2) AS overdue_ratio_pct,
-  ROUND(AVG(fes.utilization_ratio), 4) AS avg_utilization,
-  ROUND(AVG(fes.avg_days_past_due), 2) AS avg_dpd,
-  COUNT(CASE WHEN fes.warning_flag THEN 1 END) AS customers_with_warnings,
-  COUNT(CASE WHEN fes.stress_flag THEN 1 END) AS customers_under_stress,
-  COUNT(CASE WHEN fes.default_in_next_90d THEN 1 END) AS customers_at_default_risk
-FROM credit_risk.fact_exposure_snapshot fes
-GROUP BY fes.year_month
-ORDER BY fes.year_month DESC;
+    dd.year_num,
+    dd.month_num,
+    dd.year_month,
+    SUM(f.current_exposure) AS total_exposure,
+    SUM(f.overdue_exposure) AS total_overdue_exposure,
+    CASE
+        WHEN SUM(f.current_exposure) = 0 THEN 0
+        ELSE SUM(f.overdue_exposure) / SUM(f.current_exposure)
+    END AS overdue_rate,
+    AVG(f.utilization_ratio) AS avg_utilization_ratio,
+    COUNT(DISTINCT f.customer_key) AS active_customers
+FROM credit_risk_dw.fact_exposure_snapshot f
+JOIN credit_risk_dw.dim_date dd
+    ON f.snapshot_date_key = dd.date_key
+GROUP BY dd.year_num, dd.month_num, dd.year_month
+ORDER BY dd.year_num, dd.month_num;

@@ -1,5 +1,15 @@
--- Quality Check: Primary Key Uniqueness
--- Validates that primary keys are unique and not NULL
+SELECT 'dim_customer.customer_key' AS check_name, customer_key, COUNT(*)
+FROM credit_risk_dw.dim_customer
+GROUP BY customer_key
+HAVING COUNT(*) > 1
+
+UNION ALL
+
+SELECT 'fact_invoice.invoice_key', invoice_key::integer, COUNT(*)
+FROM credit_risk_dw.fact_invoice
+GROUP BY invoice_key
+HAVING COUNT(*) > 1;
+
 SELECT customer_key, COUNT(*)
 FROM credit_risk_dw.dim_customer
 GROUP BY customer_key

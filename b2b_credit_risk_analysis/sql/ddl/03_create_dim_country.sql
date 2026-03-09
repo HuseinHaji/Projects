@@ -1,5 +1,4 @@
--- Dimension: Country
-CREATE TABLE credit_risk_dw.dim_country (
+CREATE TABLE IF NOT EXISTS credit_risk_dw.dim_country (
     country_key         INTEGER PRIMARY KEY,
     country_name        VARCHAR(100) NOT NULL UNIQUE,
     country_code        VARCHAR(10) NOT NULL,

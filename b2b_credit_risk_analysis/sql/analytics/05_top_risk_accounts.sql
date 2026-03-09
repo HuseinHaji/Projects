@@ -1,37 +1,36 @@
--- Analytics: Top Risk Accounts
--- Identifies highest-risk customers by exposure and warning signals
 SELECT
-  dc.customer_id,
-  dc.customer_name,
-  c.country_name,
-  i.industry_name,
-  fes.rating_code,
-  fes.current_exposure,
-  fes.overdue_exposure,
-  fes.utilization_ratio,
-  fes.avg_days_past_due,
-  fes.warning_flag,
-  fes.stress_flag,
-  fes.default_in_next_90d,
-  CASE 
-    WHEN fes.default_in_next_90d THEN 'CRITICAL'
-    WHEN fes.stress_flag AND fes.warning_flag THEN 'HIGH'
-    WHEN fes.stress_flag OR fes.warning_flag THEN 'MEDIUM'
-    ELSE 'LOW'
-  END AS alert_level,
-  fes.snapshot_date
-FROM credit_risk.fact_exposure_snapshot fes
-LEFT JOIN credit_risk.dim_customer dc ON fes.customer_key = dc.customer_key
-LEFT JOIN credit_risk.dim_country c ON dc.country_key = c.country_key
-LEFT JOIN credit_risk.dim_industry i ON dc.industry_key = i.industry_key
-WHERE fes.snapshot_date = (SELECT MAX(snapshot_date) FROM credit_risk.fact_exposure_snapshot)
-  AND (fes.warning_flag OR fes.stress_flag OR fes.default_in_next_90d)
-ORDER BY 
-  CASE 
-    WHEN fes.default_in_next_90d THEN 1
-    WHEN fes.stress_flag AND fes.warning_flag THEN 2
-    WHEN fes.stress_flag OR fes.warning_flag THEN 3
-    ELSE 4
-  END,
-  fes.current_exposure DESC
-LIMIT 100;
+    dc.customer_id,
+    dc.customer_name,
+    co.country_name,
+    di.industry_name,
+    dd.full_date AS snapshot_date,
+    rr.rating_code,
+    f.current_exposure,
+    f.overdue_exposure,
+    f.overdue_ratio,
+    f.utilization_ratio,
+    f.avg_days_past_due,
+    f.max_days_past_due,
+    f.notch_change,
+    f.downgrade_flag,
+    f.warning_flag,
+    f.default_in_next_90d
+FROM credit_risk_dw.fact_exposure_snapshot f
+JOIN credit_risk_dw.dim_customer dc
+    ON f.customer_key = dc.customer_key
+JOIN credit_risk_dw.dim_country co
+    ON dc.country_key = co.country_key
+JOIN credit_risk_dw.dim_industry di
+    ON dc.industry_key = di.industry_key
+JOIN credit_risk_dw.dim_date dd
+    ON f.snapshot_date_key = dd.date_key
+JOIN credit_risk_dw.dim_risk_rating rr
+    ON f.rating_key = rr.rating_key
+WHERE
+    f.warning_flag = 1
+    OR f.downgrade_flag = 1
+    OR f.default_in_next_90d = 1
+ORDER BY
+    f.overdue_exposure DESC,
+    f.avg_days_past_due DESC,
+    f.utilization_ratio DESC;

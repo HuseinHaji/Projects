@@ -1,5 +1,4 @@
--- Fact: Rating History
-CREATE TABLE credit_risk_dw.fact_rating_history (
+CREATE TABLE IF NOT EXISTS credit_risk_dw.fact_rating_history (
     rating_history_key    BIGINT PRIMARY KEY,
     customer_key          INTEGER NOT NULL,
     snapshot_date_key     INTEGER NOT NULL,

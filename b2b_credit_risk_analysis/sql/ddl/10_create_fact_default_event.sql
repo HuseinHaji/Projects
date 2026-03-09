@@ -1,11 +1,10 @@
--- Fact: Default Event
-CREATE TABLE credit_risk_dw.fact_default_event (
+CREATE TABLE IF NOT EXISTS credit_risk_dw.fact_default_event (
     default_event_key         BIGINT PRIMARY KEY,
     customer_key              INTEGER NOT NULL,
     default_date_key          INTEGER NOT NULL,
-    default_amount            DECIMAL(18,2) NOT NULL,
-    recovery_amount           DECIMAL(18,2) NOT NULL,
-    net_loss_amount           DECIMAL(18,2) NOT NULL,
+    default_amount            NUMERIC(18,2) NOT NULL,
+    recovery_amount           NUMERIC(18,2) NOT NULL,
+    net_loss_amount           NUMERIC(18,2) NOT NULL,
     default_reason            VARCHAR(50),
     claim_status              VARCHAR(30),
     days_from_first_overdue   INTEGER,

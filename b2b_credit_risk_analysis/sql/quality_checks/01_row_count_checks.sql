@@ -1,5 +1,3 @@
--- Quality Check: Row Count Validation
--- Verifies that row counts match expectations between staging and loaded tables
 SELECT 'dim_date' AS table_name, COUNT(*) AS row_count
 FROM credit_risk_dw.dim_date
 UNION ALL
@@ -19,4 +17,5 @@ SELECT 'fact_payment', COUNT(*) FROM credit_risk_dw.fact_payment
 UNION ALL
 SELECT 'fact_default_event', COUNT(*) FROM credit_risk_dw.fact_default_event
 UNION ALL
-SELECT 'fact_rating_history', COUNT(*) FROM credit_risk_dw.fact_rating_history;
+SELECT 'fact_rating_history', COUNT(*) FROM credit_risk_dw.fact_rating_history
+ORDER BY table_name;

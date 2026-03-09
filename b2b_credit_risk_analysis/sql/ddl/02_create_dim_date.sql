@@ -1,5 +1,4 @@
--- Dimension: Date
-CREATE TABLE credit_risk_dw.dim_date (
+CREATE TABLE IF NOT EXISTS credit_risk_dw.dim_date (
     date_key            INTEGER PRIMARY KEY,
     full_date           DATE NOT NULL UNIQUE,
     year_num            INTEGER NOT NULL,

@@ -1,5 +1,3 @@
--- View: Customer Risk Monitor
--- Real-time view of current risk metrics for each customer
 CREATE OR REPLACE VIEW credit_risk_dw.vw_customer_risk_monitor AS
 SELECT
     dc.customer_id,

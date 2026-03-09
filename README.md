@@ -118,7 +118,7 @@ final-project-HuseinHaji/
 │   └── models/
 │
 ├── pyproject.toml             # Project metadata and dependencies
-├── pixi.toml                  # Environment specification
+├── pixi.lock                  # Environment specification
 ├── README.md                  # This file
 └── .gitignore
 ```
@@ -179,7 +179,7 @@ This project adheres to reproducible research best practices:
 - **Deterministic Pipeline** – `pytask` ensures consistent execution
 - **Automated Testing** – `pytest` validates all components
 - **Code Quality** – `pre-commit` hooks enforce standards
-- **Version Control** – Dependencies locked in `pixi.toml`
+- **Version Control** – Dependencies locked in `pyproject.toml`
 - **Documentation** – Clear methodology and code comments
 
 **Simply run `pixi run pytask` to reproduce the entire analysis from scratch.**
@@ -203,7 +203,7 @@ Core libraries:
 - **matplotlib/seaborn** – Visualization
 - **pytask** – Workflow automation
 
-See `pixi.toml` for complete environment specification.
+See `pixi.lock` for complete environment specification.
 
 ## Contributing
 
